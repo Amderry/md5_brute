@@ -65,6 +65,7 @@ int brute_passwd(char* hash)
       if(!strcmp(md5string, hash))
       {
         printf("%s%s\n", "Password bruted: ", passwd);
+        exit(0);
       }
     }
       free(pows);
