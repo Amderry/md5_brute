@@ -7,6 +7,7 @@
 #define HEX_DIGEST_LENGTH MD5_DIGEST_LENGTH * 2
 #define PASSWD_LENGTH 5 
 #define ASCII_COUNT 95
+#define OMP
 //#define SIMPLE_DEBUG
 //#define SLEEP
 
@@ -39,8 +40,9 @@ int brute_passwd(char* hash)
     {
       pows[p] = pow(ASCII_COUNT, p); 
     }
-  
+    #ifdef OMP 
     #pragma omp parallel for
+    #endif
     for(uint_64 j = 0; j < iters; ++j)
     {
       char passwd[PASSWD_LENGTH + 1];
@@ -68,7 +70,7 @@ int brute_passwd(char* hash)
         exit(0);
       }
     }
-      free(pows);
+    free(pows);
   }
   return 0;
 }
