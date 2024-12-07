@@ -5,8 +5,8 @@
 #include <openssl/md5.h>
 
 #define HEX_DIGEST_LENGTH MD5_DIGEST_LENGTH * 2
-#define PASSWD_LENGTH 5 
-#define ASCII_COUNT 95
+#define PASSWD_LENGTH 6 
+#define ASCII_COUNT 96
 #define OMP
 //#define SIMPLE_DEBUG
 //#define SLEEP
@@ -67,6 +67,8 @@ int brute_passwd(char* hash)
       if(!strcmp(md5string, hash))
       {
         printf("%s%s\n", "Password bruted: ", passwd);
+        free(pows); //Исправляем утечки памяти
+        free(hash); 
         exit(0);
       }
     }
