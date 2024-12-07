@@ -83,7 +83,6 @@ void check_combination(char* passwd, char* hash, int i, uint_64 j, uint_64* pows
   {
     if(!(j % pows[p]))
     {
-#pragma omp critical
       passwd[p] = (j / pows[p]) % ASCII_COUNT + 33;
       break;
     }
